@@ -36,9 +36,11 @@ const newExpense: Expense = {
   amount: amountValue,
   category: category.value,
 };
-expenses.push(newExpense);
-renderExpenses()
-//console.log(expenses);
+
+  expenses.push(newExpense);
+  renderExpenses()
+  updateTotal();
+  form.reset();
 });
 
 //Adding the expenses to the list
@@ -52,3 +54,8 @@ function renderExpenses(){
   })
 }
 
+function updateTotal() {
+  const totalAmount = expenses.reduce((sum, expense) => sum + expense.amount, 0);
+  total.textContent = totalAmount.toFixed(2);
+  
+}

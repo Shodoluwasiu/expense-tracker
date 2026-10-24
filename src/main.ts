@@ -5,6 +5,7 @@ const form = document.getElementById('expense-form') as HTMLFormElement;
 const title = document.getElementById('title') as HTMLInputElement;
 const amount = document.getElementById('amount') as HTMLInputElement;
 const category = document.getElementById('category') as HTMLSelectElement;
+const list = document.getElementById('expense-list') as HTMLUListElement;
 //const amountValue = Number(amount.value);
 
 //define the Expense interface
@@ -36,5 +37,18 @@ const newExpense: Expense = {
   category: category.value,
 };
 expenses.push(newExpense);
-console.log(expenses);
+renderExpenses()
+//console.log(expenses);
 });
+
+//Adding the expenses to the list
+function renderExpenses(){
+  list.innerHTML = ""
+  
+ expenses.forEach((expense) => {
+    const li = document.createElement('li');
+    li.textContent = `${expense.title} - $${expense.amount} (${expense.category})`;
+    list.appendChild(li)
+  })
+}
+
